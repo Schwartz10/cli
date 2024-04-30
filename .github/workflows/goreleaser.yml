@@ -39,5 +39,5 @@ jobs:
         name: Upload assets
         uses: actions/upload-artifact@v3
         with:
-          name: myapp
-          path: myfolder/dist/*
+          name: glif
+          path: dist/*
