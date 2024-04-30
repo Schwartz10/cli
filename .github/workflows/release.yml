@@ -43,19 +43,28 @@ jobs:
             exit 1
           fi
       - uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.22.2
 
-      - name: Build
-        run: go build -o glif .
-
       - name: Test
         run: go test -v ./...
 
-      - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
         with:
-          name: glif-${{ matrix.os }}-${{ matrix.arch }}
-          path: glif
+          # either 'goreleaser' (default) or 'goreleaser-pro'
+          distribution: goreleaser
+          # 'latest', 'nightly', or a semver
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload release artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: glif-${{ matrix.os }}-${{ matrix.arch }}
+      #     path: glif
