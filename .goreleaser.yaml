@@ -19,7 +19,7 @@ builds:
   - env:
       - CGO_ENABLED=1
     goos:
-      - linux
+      - darwin
     goarch:
       - amd64
       # - darwin
@@ -41,3 +41,13 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+nfpms:
+  - maintainer: Jonathan Schwartz <jonathan@glif.io>
+    description: GLIF CLI
+    homepage: https://github.com/glifio/glif
+    license: Apache-2.0 license
+    formats:
+      - deb
+      - rpm
+      - apk
