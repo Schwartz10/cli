@@ -1,11 +1,9 @@
 name: goreleaser
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to release'
-        required: true
+  push:
+    tags:
+      - '*'
 
 permissions:
   contents: write
@@ -30,14 +28,8 @@ jobs:
           distribution: goreleaser
           # 'latest', 'nightly', or a semver
           version: latest
-          args: release --clean --snapshot
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Your GoReleaser Pro key, if you are using the 'goreleaser-pro' distribution
           # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
-      -
-        name: Upload assets
-        uses: actions/upload-artifact@v4
-        with:
-          name: glif-linux-x86-64
-          path: dist/*
