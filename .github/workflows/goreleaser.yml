@@ -37,7 +37,7 @@ jobs:
           # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
       -
         name: Upload assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: glif
-          path: dist/*
+          name: glif-linux-x86-64
+          path: glif/cli_Linux_x86_64.tar.gz
