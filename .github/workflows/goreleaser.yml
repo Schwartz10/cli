@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: glif-linux-x86-64
-          path: glif/cli_Linux_x86_64.tar.gz
+          path: dist/cli_Linux_x86_64.tar.gz
